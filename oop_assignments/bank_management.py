@@ -30,5 +30,4 @@ account1.withdraw(400)
 account1.withdraw(800)  # This withdrawal will fail due to insufficient funds
 print(f"Final balance: ${account1.get_balance()}")
 # hjfkd
-print("execution is done")
 
