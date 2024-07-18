@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from models import Todo
 from extension import db
 from utils import get_data
+import traceback
 
 
 app = Flask(__name__)
@@ -29,10 +30,11 @@ def create_task():
 
 @app.route('/tasks', methods=['GET'])
 def get_task():
-    # try:
-    todo_data = Todo.query.all()
-    data = get_data(todo_data)
-    return jsonify(data), 200
-    # except Exception as e:
-    #     return "unexpected error has occurred", 500
+    try:
+        todo_data = Todo.query.all()
+        data = get_data(todo_data)
+        return jsonify(data), 200
+    except Exception as e:
+        print(traceback.format_exc())
+        return "unexpected error has occurred", 500
 
